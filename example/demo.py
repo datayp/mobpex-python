@@ -5,7 +5,7 @@ Create on 2016/03/29
 @author genshen.hu
 '''
 
-import  Mobpex.base
+import  MobpexPythonSDK.base
 import  logging
 import  json
 
@@ -31,8 +31,8 @@ liveMode='true'
 def findChannelInfoByAppId():
     try:
         #获取客户端对象     
-        client = Mobpex.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,liveMode=liveMode)  
-        req = Mobpex.base.TopRequest('/rest/v1.0/query/findChannelInfoByAppId')  
+        client = MobpexPythonSDK.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,liveMode=liveMode)  
+        req = MobpexPythonSDK.base.TopRequest('/rest/v1.0/query/findChannelInfoByAppId')  
         content = client.getResponse(req)
         print(content)
         #验证服务器返回的数据是否被篡改
@@ -70,8 +70,8 @@ def testProOder():
     try:
         prePayRequestJson = json.dumps(prePayRequest)
         #获取客户端对象     
-        client = Mobpex.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,prePayRequest=prePayRequestJson,liveMode=liveMode)  
-        req = Mobpex.base.TopRequest('/rest/v1.0/pay/unifiedOrder')  
+        client = MobpexPythonSDK.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,prePayRequest=prePayRequestJson,liveMode=liveMode)  
+        req = MobpexPythonSDK.base.TopRequest('/rest/v1.0/pay/unifiedOrder')  
         jsonObj = client.getResponse(req)
         print(jsonObj)
         #验证服务器返回的数据是否被篡改
@@ -110,8 +110,8 @@ def testRefund():
     }
     try: 
           refundRequestJson = json.dumps(refundRequest)
-          client = Mobpex.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,refundRequest=refundRequestJson,liveMode=liveMode)  
-          req = Mobpex.base.TopRequest('/rest/v1.0/pay/refund')  
+          client = MobpexPythonSDK.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,refundRequest=refundRequestJson,liveMode=liveMode)  
+          req = MobpexPythonSDK.base.TopRequest('/rest/v1.0/pay/refund')  
           jsonObj = client.getResponse(req)
           print(jsonObj)
           #验证服务器返回的数据是否被篡改
@@ -134,8 +134,8 @@ def testRefundQuery():
     #商户退款流水
     refundNo="20485228279"
     try:
-        client = Mobpex.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,tradeNo=tradeNo,refundNo=refundNo,liveMode=liveMode)  
-        req = Mobpex.base.TopRequest('/rest/v1.0/pay/queryRefundOrder')  
+        client = MobpexPythonSDK.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,tradeNo=tradeNo,refundNo=refundNo,liveMode=liveMode)  
+        req = MobpexPythonSDK.base.TopRequest('/rest/v1.0/pay/queryRefundOrder')  
         jsonObj = client.getResponse(req)
         print(jsonObj)
         #验证服务器返回的数据是否被篡改
@@ -157,8 +157,8 @@ def  testPayQuery():
     #商户支付请求流水号
     tradeNo="834153959835676"
     try:
-         client = Mobpex.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,tradeNo=tradeNo,liveMode=liveMode)  
-         req = Mobpex.base.TopRequest('/rest/v1.0/pay/queryPaymentOrder')  
+         client = MobpexPythonSDK.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,tradeNo=tradeNo,liveMode=liveMode)  
+         req = MobpexPythonSDK.base.TopRequest('/rest/v1.0/pay/queryPaymentOrder')  
          jsonObj = client.getResponse(req)
          print(jsonObj)
          #验证服务器返回的数据是否被篡改

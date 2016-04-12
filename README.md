@@ -18,7 +18,7 @@ Python 2.7 以上 ，建议使用Python 3.x 以上版本
 ##### 手动安装
 
 使用方法：拷贝依赖包Mobpex到工程下面
-调用方式，请参考demo.py
+调用方式，请参考example/demo.py
 
 
 
@@ -36,4 +36,3 @@ Python 2.7 以上 ，建议使用Python 3.x 以上版本
 3、客户端调用Client SDK支付接口,传入支付凭证作为参数；
 
 4、Client SDK将唤醒相应渠道支付控件引导用户完成支付。
-
