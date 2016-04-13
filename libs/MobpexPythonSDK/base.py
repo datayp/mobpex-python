@@ -8,12 +8,11 @@ import datetime
 import urllib, hashlib  
 import base64 
 import ssl 
-import logging
+import  logging
 logging.basicConfig(level=logging.INFO)
 try :  
     import json  
 except ImportError : 
-    ss=a 
     import simplejson as json
 try:
     import urllib2
@@ -96,32 +95,38 @@ class Client :
             #请求头    
             headers={
                       "Content-Type":"application/x-www-form-urlencoded;charset=utf-8",
-                      "Cache-Control": "no-cache",
-                      "Connection": "Keep-Alive"}
+                      "Cache-Control": "no-cache"
+                      }
             #url拼装 
             url=gateway+methodName
-            if flag=='urllib2':
-                data_string =  urllib.urlencode(d)
-                req = urllib2.Request(url,data_string,headers) 
-                res = urllib2.urlopen(req)
-                if res.code  is not  200:
+            try:
+               if flag=='urllib2':
+                  data_string =  urllib.urlencode(d)
+                  req = urllib2.Request(url,data_string,headers) 
+                  res = urllib2.urlopen(req,timeout=30)
+                  if res.code  is not  200:
                       raise RequestException('非法状态:'+str(res.status)+",body:"+str(res.read().decode('utf-8')))   
-            else:
-                 data_string=urllib.parse.urlencode(d).encode(encoding='UTF8')
-                 res= urllib.request.urlopen(url,data_string) 
-                 if res.status is not 200:
-                      raise RequestException('非法状态:'+str(res.status)+",body:"+str(res.read().decode('utf-8')))  
-            content = res.read().decode('utf-8') 
-            if content:      
-                jsonObj=json.loads(content,encoding='utf-8',object_pairs_hook=OrderedDict) 
-                return jsonObj
-            else:
-              return 
+               else:
+                  data_string=urllib.parse.urlencode(d).encode(encoding='UTF8')
+                  res= urllib.request.urlopen(url,data_string,timeout=30) 
+                  if res.status is not 200:
+                       raise RequestException('非法状态:'+str(res.status)+",body:"+str(res.read().decode('utf-8')))  
+               content = res.read().decode('utf-8') 
+               if content:      
+                  jsonObj=json.loads(content,encoding='utf-8',object_pairs_hook=OrderedDict) 
+                  return jsonObj
+               else:
+                  return 
+            except Exception as e :
+                 print(e)     
+            finally:
+                 #关闭连接
+                 res.close() 
 
     def validResultSign(self,params): 
     #===========================================================================
     # '''服务端数据验证签名方法
-    # @param content: 支持字典和string两种
+    # @param params: 支持字典
     # '''
     #===========================================================================
           if params  is None:
