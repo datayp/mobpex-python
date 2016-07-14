@@ -19,7 +19,7 @@ appId     = '15122404366710489367'
 #商户注册的用户id
 userId    = 'long.chen-1@yeepay.com'
 #魔派SERVER SDK API请求地址  
-serverRoot   = 'https://220.181.25.235/yop-center'
+serverRoot   = 'https://www.mobpex.com/yop-center'
 #忽略ssl检查
 ignoreSSLCheck='true'
 #是否生产模式
@@ -63,9 +63,7 @@ def testProOder():
       #描述
       "productDescription":"apple",
       #合计金额,精确到小数点后2位
-      "amount":"1.00",
-      #请求IP 
-      "requestIp":"127.0.0.1"
+      "amount":"1.00"
     }
     try:
         prePayRequestJson = json.dumps(prePayRequest)
@@ -93,14 +91,6 @@ def testRefund():
     refundRequest={
       #商户系统支付请求流水
       "tradeNo":"834153959836",
-      #终端唯一编号
-      "deviceId":"834153959836",
-      #终端类型
-      "deviceType":"MOBILE",
-      #请求IP
-      "requestIp":"127.0.0.1",
-      #apple iPhone 7s plus pro 128T
-      "requestIdentification":"apple",
       #商户系统的退款请求流水号
       "refundNo":"333443",
       #合计金额，精确到小数点后2位
