@@ -22,8 +22,6 @@ userId    = 'long.chen-1@yeepay.com'
 serverRoot   = 'https://www.mobpex.com/yop-center'
 #忽略ssl检查
 ignoreSSLCheck='true'
-#是否生产模式
-liveMode='true'
 
 '''
 查询APP可用支付渠道列表
@@ -31,7 +29,7 @@ liveMode='true'
 def findChannelInfoByAppId():
     try:
         #获取客户端对象     
-        client = MobpexPythonSDK.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,liveMode=liveMode)  
+        client = MobpexPythonSDK.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck)  
         req = MobpexPythonSDK.base.TopRequest('/rest/v1.0/query/findChannelInfoByAppId')  
         content = client.getResponse(req)
         print(content)
@@ -68,7 +66,7 @@ def testProOder():
     try:
         prePayRequestJson = json.dumps(prePayRequest)
         #获取客户端对象     
-        client = MobpexPythonSDK.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,prePayRequest=prePayRequestJson,liveMode=liveMode)  
+        client = MobpexPythonSDK.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,prePayRequest=prePayRequestJson)  
         req = MobpexPythonSDK.base.TopRequest('/rest/v1.0/pay/unifiedOrder')  
         jsonObj = client.getResponse(req)
         print(jsonObj)
@@ -100,7 +98,7 @@ def testRefund():
     }
     try: 
           refundRequestJson = json.dumps(refundRequest)
-          client = MobpexPythonSDK.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,refundRequest=refundRequestJson,liveMode=liveMode)  
+          client = MobpexPythonSDK.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,refundRequest=refundRequestJson)  
           req = MobpexPythonSDK.base.TopRequest('/rest/v1.0/pay/refund')  
           jsonObj = client.getResponse(req)
           print(jsonObj)
@@ -124,7 +122,7 @@ def testRefundQuery():
     #商户退款流水
     refundNo="20485228279"
     try:
-        client = MobpexPythonSDK.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,tradeNo=tradeNo,refundNo=refundNo,liveMode=liveMode)  
+        client = MobpexPythonSDK.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,tradeNo=tradeNo,refundNo=refundNo)  
         req = MobpexPythonSDK.base.TopRequest('/rest/v1.0/pay/queryRefundOrder')  
         jsonObj = client.getResponse(req)
         print(jsonObj)
@@ -147,7 +145,7 @@ def  testPayQuery():
     #商户支付请求流水号
     tradeNo="834153959835676"
     try:
-         client = MobpexPythonSDK.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,tradeNo=tradeNo,liveMode=liveMode)  
+         client = MobpexPythonSDK.base.Client(appId,userId,serverRoot,secretKey,ignoreSSLCheck,tradeNo=tradeNo)  
          req = MobpexPythonSDK.base.TopRequest('/rest/v1.0/pay/queryPaymentOrder')  
          jsonObj = client.getResponse(req)
          print(jsonObj)
